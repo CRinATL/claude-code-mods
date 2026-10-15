@@ -17,6 +17,10 @@ Tick the mods you want, see what each one adds, and press Enter to install. Unti
 
 It edits the Claude profile that `claude` uses here, shown at the top. For another profile, set it first: `CLAUDE_CONFIG_DIR=~/.claude-other npx claude-code-mods`.
 
+## Order your bands
+
+Press `o` in the checklist to order your bands (the lines above the prompt). Move the cursor with up/down or `j`/`k`, move a band with Shift+up/down or `K`/`J`, and press Enter to save. Esc goes back without saving. The order goes to `<config dir>/claude-code-mods/bands.json`, where the config dir is `CLAUDE_CONFIG_DIR` or `~/.claude`. Restart Claude Code to apply it. Bands not in the file sit on top.
+
 ## Notes
 
 - It shells out to the `claude` CLI (`claude plugin ...`), so Claude Code must be installed.
