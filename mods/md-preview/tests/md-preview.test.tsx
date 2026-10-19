@@ -530,6 +530,10 @@ describe('md-preview', () => {
     expect(prose).toContain('Next paragraph.')
     expect(sanitize('a <link rel="x"> b <base href="/"> c')).toBe('a  b  c')
     expect(sanitize('x <script>alert(1) y')).toBe('x ') // an unclosed script still takes the rest
+    // A void tag that never closes takes the rest, so the page's own markup can't close it (#116).
+    expect(sanitize('<div>\n<meta http-equiv=refresh content="0;url=https://example.com"\nx')).toBe('<div>\n')
+    expect(sanitize('a <base href="x')).toBe('a ')
+    expect(sanitize('<link rel=x href=y\nstill same block')).toBe('')
     const p0 = page([{ html: '<p>x</p>', dir: '/r' }], { title: 't', width: 900 })
     const nonce = p0.match(/'nonce-([0-9a-f]+)'/)?.[1] ?? ''
     expect(nonce).toHaveLength(24)
